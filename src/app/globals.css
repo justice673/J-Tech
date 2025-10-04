@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary-bg: #000000;
+  --color-surface: #000000;
+  --color-text: #E5E7EB;
+  --color-muted: #94A3B8;
+  --color-accent: #22D3EE;
+  --color-accentAlt: #A78BFA;
+  --color-border: #1E293B;
+  --font-heading: var(--font-outfit);
+  --font-body: var(--font-outfit);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-primary-bg text-text antialiased font-[var(--font-body)];
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-heading);
+  }
+  ::selection {
+    background: #000000;
+    color: #E5E7EB;
+  }
+  :focus-visible {
+    outline: 2px solid #22D3EE;
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth scrolling for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect user's motion preferences - but allow Framer Motion to handle this */
+@media (prefers-reduced-motion: reduce) {
+  /* Let Framer Motion handle reduced motion preferences instead of blanket disabling */
+  .no-framer-motion *,
+  .no-framer-motion *::before,
+  .no-framer-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Support for conic gradients */
+.bg-gradient-conic {
+  background-image: conic-gradient(var(--tw-gradient-stops));
+}
+
+@supports not (background: conic-gradient(from 0deg, transparent, transparent)) {
+  .bg-gradient-conic {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+  }
+}
+
+/* Ensure animations work */
+@layer utilities {
+  .animate-expand {
+    animation: expand 0.8s ease-in-out;
+  }
+  
+  @keyframes expand {
+    from {
+      width: 8rem;
+      opacity: 0.5;
+    }
+    to {
+      width: 16rem;
+      opacity: 1;
+    }
+  }
+  /* shimmer for ShinyText */
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+  /* per-character appear/disappear */
+  @keyframes text-fade-cycle {
+    0% { opacity: 0; transform: translateY(0.35em) scale(0.98); filter: blur(3px); }
+    10% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    40% { opacity: 1; }
+    60% { opacity: 0; transform: translateY(-0.25em) scale(0.98); filter: blur(2px); }
+    100% { opacity: 0; }
+  }
+  .text-fade-char {
+    display: inline-block;
+    will-change: opacity, transform, filter;
+    animation-name: text-fade-cycle;
+    animation-duration: 3s; /* overridden inline */
+    animation-timing-function: cubic-bezier(0.22,1,0.36,1);
+    animation-iteration-count: infinite; /* overridden inline */
+    animation-fill-mode: both;
+  }
 }
