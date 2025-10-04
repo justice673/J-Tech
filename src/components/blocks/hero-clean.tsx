@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { ShinyText } from "@/components/ui/text-effect"
 
 interface HeroAction {
@@ -179,11 +180,13 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
               />
               {/* Image or placeholder, clipped to circle (no border radius) */}
               {imageSrc ? (
-                <img
+                <Image
                   src={imageSrc}
                   alt={imageAlt}
-                  className={cn("w-full h-full object-cover", imageClassName)}
+                  fill
+                  className={cn("object-cover", imageClassName)}
                   style={{ clipPath: "circle(50% at 50% 50%)" }}
+                  sizes="(max-width: 768px) 192px, 288px"
                 />
               ) : (
                 <div
