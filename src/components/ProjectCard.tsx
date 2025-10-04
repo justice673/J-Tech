@@ -13,6 +13,8 @@ interface ProjectCardProps {
   index: number
 }
 
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: (index: number) => ({
@@ -21,7 +23,7 @@ const cardVariants = {
     transition: {
       duration: 0.6,
       delay: index * 0.1,
-      ease: [0.22, 1, 0.36, 1] as any
+      ease: EASE
     }
   })
 }

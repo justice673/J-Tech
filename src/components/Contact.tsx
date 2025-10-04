@@ -11,13 +11,16 @@ const ContactSchema = z.object({
   message: z.string().min(10, 'Message must be at least 10 characters'),
 })
 
+interface ServerValidationIssue { path?: (string | number)[]; message: string }
+type FieldErrors = Record<string, string>
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   })
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [errors, setErrors] = useState<FieldErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -66,26 +69,26 @@ export default function Contact() {
         const errorData = await response.json()
         if (errorData.details) {
           // Handle validation errors from server
-          const fieldErrors: Record<string, string> = {}
-          errorData.details.forEach((error: any) => {
-            if (error.path && error.path[0]) {
-              fieldErrors[error.path[0]] = error.message
+          const serverFieldErrors: FieldErrors = {};
+          (errorData.details as ServerValidationIssue[]).forEach((issue: ServerValidationIssue) => {
+            const key = issue.path?.[0]
+            if (typeof key === 'string') {
+              serverFieldErrors[key] = issue.message
             }
           })
-          setErrors(fieldErrors)
+          setErrors(serverFieldErrors)
         }
         setSubmitStatus('error')
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
         // Handle client-side validation errors
-        const fieldErrors: Record<string, string> = {}
-        error.issues.forEach((err) => {
-          if (err.path[0]) {
-            fieldErrors[err.path[0] as string] = err.message
-          }
+        const clientFieldErrors: FieldErrors = {};
+        error.issues.forEach((err: z.ZodIssue) => {
+          const key = err.path[0]
+          if (typeof key === 'string') clientFieldErrors[key] = err.message
         })
-        setErrors(fieldErrors)
+        setErrors(clientFieldErrors)
       } else {
         setSubmitStatus('error')
       }

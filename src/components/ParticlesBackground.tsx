@@ -2,6 +2,7 @@
 import { useEffect, useMemo } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 export default function ParticlesBackground() {
   // initialize the engine once
@@ -13,10 +14,10 @@ export default function ParticlesBackground() {
     }).then(() => console.log("[Particles] engine ready"));
   }, []);
 
-  const options = useMemo(
+  const options: ISourceOptions = useMemo(
     () => ({
       fpsLimit: 60,
-      fullScreen: { enable: true, zIndex: 50 }, // raise above solid section backgrounds
+      fullScreen: { enable: true, zIndex: 50 },
       detectRetina: true,
       interactivity: {
         events: {
@@ -37,7 +38,7 @@ export default function ParticlesBackground() {
         links: {
           enable: true,
           distance: 150,
-          color: "#22D3EE",
+            color: "#22D3EE",
           opacity: 0.5,
           width: 1.2,
         },
@@ -57,7 +58,7 @@ export default function ParticlesBackground() {
   return (
     <Particles
       id="tsparticles"
-      options={options as any}
+      options={options}
       style={{ pointerEvents: "none" }}
     />
   );
