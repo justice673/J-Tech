@@ -16,6 +16,7 @@ const navItems = [
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +44,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md ${caveat.variable}`}
+      className={`sticky top-0 z-[60] border-b border-border bg-surface/80 backdrop-blur-md ${caveat.variable}`}
     >
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 md:px-6">
         <Link 
@@ -73,13 +74,49 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile menu button - TODO: Implement mobile menu */}
-        <button className="md:hidden text-text hover:text-accent transition-colors">
+        {/* Mobile menu button */}
+        <button 
+          className="md:hidden text-text hover:text-accent transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+        >
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            {isMobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
           </svg>
         </button>
       </nav>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden border-t border-border bg-surface/95 backdrop-blur-md"
+        >
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex flex-col space-y-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`text-sm font-medium transition-colors hover:text-accent py-2 ${
+                    activeSection === item.href.slice(1) ? 'text-accent' : 'text-muted'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      )}
     </motion.header>
   )
 }

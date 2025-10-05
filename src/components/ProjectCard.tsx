@@ -39,7 +39,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={cardVariants}
-      className="group relative h-full"
+      className="group relative h-full z-20"
       style={{ perspective: '1600px' }}
     >
       <div

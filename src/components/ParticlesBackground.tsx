@@ -17,7 +17,7 @@ export default function ParticlesBackground() {
   const options: ISourceOptions = useMemo(
     () => ({
       fpsLimit: 60,
-      fullScreen: { enable: true, zIndex: 50 },
+      fullScreen: { enable: true, zIndex: -10 },
       detectRetina: true,
       interactivity: {
         events: {

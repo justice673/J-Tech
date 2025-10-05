@@ -59,11 +59,11 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
         {gradient && (
           <div className="absolute top-0 isolate z-0 flex w-screen flex-1 items-start justify-center">
             {blur && (
-              <div className="absolute top-0 z-50 h-48 w-screen bg-transparent opacity-10 backdrop-blur-md" />
+              <div className="absolute top-0 z-10 h-48 w-screen bg-transparent opacity-10 backdrop-blur-md" />
             )}
 
             {/* Main glow */}
-            <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-[-30%] bg-accent/60 opacity-80 blur-3xl" />
+            <div className="absolute inset-auto z-10 h-36 w-[28rem] -translate-y-[-30%] bg-accent/60 opacity-80 blur-3xl" />
 
             {/* Lamp effect */}
             <motion.div
@@ -80,7 +80,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
               viewport={{ amount: 0.35 }}
               transition={{ ease: "easeInOut", delay: 0.3, duration: 0.8 }}
               whileInView={{ width: "30rem" }}
-              className="absolute inset-auto z-50 h-0.5 -translate-y-[-10%] bg-accent/60"
+              className="absolute inset-auto z-10 h-0.5 -translate-y-[-10%] bg-accent/60"
             />
 
             {/* Left gradient cone */}
@@ -126,7 +126,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
           viewport={{ amount: 0.35 }}
           transition={{ ease: "easeInOut", delay: 0.3, duration: 0.8 }}
           whileInView={{ y: 0, opacity: 1 }}
-          className="relative z-50 container px-5 md:px-10 -translate-y-20"
+          className="relative z-30 container px-5 md:px-10 -translate-y-20 mt-16 sm:mt-20 md:mt-24"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* Left: text */}
