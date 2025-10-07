@@ -13,7 +13,7 @@ export const projects: Project[] = [
     id: "parlaviva",
     title: "ParlaViva Translation Platform",
     description: "AI-powered multilingual platform for real-time text, document, speech, and website translation with team collaboration and secure workflows.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI", "Translations"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI", "MongoDB" , "Express.js(Node.js)"],
     imageSrc: "/projects/parlaviva.png",
     hrefLive: "https://parlaviva.vercel.app/",
     hrefRepo: ""
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     id: "educameroon",
     title: "EduCameroon School Management System",
     description: "School management system for Cameroon secondary schools: handles student enrollment, class scheduling, timetables, exam results, curriculum resources, and role‑based access for admins, teachers, students, and guardians.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "School Mgmt"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
     imageSrc: "/projects/educameroon.png",
     hrefLive: "https://educameroon.vercel.app/",
     hrefRepo: ""
@@ -52,6 +52,15 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     imageSrc: "/projects/jabaspace.png",
     hrefLive: "https://jaba-space.vercel.app/",
+    hrefRepo: ""
+  },
+  {
+    id: "novacart",
+    title: "NovaCart E-commerce Platform",
+    description: "Modern fashion e-commerce platform featuring trending products, category browsing, seasonal collections, wishlist functionality, cart management, user authentication, and newsletter subscription system.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "Authentication"],
+    imageSrc: "/projects/novacart.png",
+    hrefLive: "https://nova-cart-delta.vercel.app/",
     hrefRepo: ""
   }
 ]
