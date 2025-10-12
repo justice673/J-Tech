@@ -62,5 +62,14 @@ export const projects: Project[] = [
     imageSrc: "/projects/novacart.png",
     hrefLive: "https://nova-cart-delta.vercel.app/",
     hrefRepo: ""
+  },
+  {
+    id: "jsrecipebox",
+    title: "J's Recipe Box",
+    description: "Community-driven recipe sharing platform where food lovers discover, share, and create amazing recipes. Features expert recipes from professional chefs, community reviews, step-by-step visual guides, and newsletter subscription.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "Express.js", "Authentication"],
+    imageSrc: "/projects/j's-recipe.png",
+    hrefLive: "https://j-s-recipe-box.vercel.app/",
+    hrefRepo: ""
   }
 ]
