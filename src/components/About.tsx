@@ -34,7 +34,7 @@ export default function About() {
             },
             {
               label: "Download Resume",
-              href: "#", // TODO: Add your resume link
+              href: "/resume.pdf",
               variant: "outline"
             }
           ]}
