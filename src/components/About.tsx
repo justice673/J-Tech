@@ -33,8 +33,8 @@ export default function About() {
               variant: "default"
             },
             {
-              label: "Download Resume",
-              href: "/resume.pdf",
+              label: "View Resume",
+              href: "/resume",
               variant: "outline"
             }
           ]}
