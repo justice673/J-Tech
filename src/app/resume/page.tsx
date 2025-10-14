@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
@@ -59,7 +58,7 @@ export default function ResumePage() {
         {/* Fallback message for browsers that don't support iframe */}
         <div className="mt-4 text-center">
           <p className="text-muted text-sm mb-4">
-            Can't view the PDF? 
+            Can&apos;t view the PDF? 
             <a 
               href="/resume.pdf" 
               target="_blank" 
