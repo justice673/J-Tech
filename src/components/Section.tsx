@@ -35,7 +35,7 @@ export default function Section({
       id={id}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1, margin: "-50px" }}
       variants={sectionVariants}
       className={`py-16 md:py-24 ${className}`}
     >

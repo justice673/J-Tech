@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Badge from '@/components/Badge'
 import { EtherealShadow } from './EtherealShadow'
 import type { Project } from '@/lib/projects'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 interface ProjectCardProps {
   project: Project
@@ -21,26 +21,42 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      delay: index * 0.1,
+      duration: 0.5,
+      delay: Math.min(index * 0.08, 0.4), // Cap max delay at 0.4s
       ease: EASE
     }
   })
 }
 
+// Fallback: ensure cards are visible after a delay (mobile safety net)
+const FALLBACK_DELAY = 2000 // 2 seconds
+
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [flipped, setFlipped] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [forceVisible, setForceVisible] = useState(false)
   const toggleFlip = useCallback(() => setFlipped(f => !f), [])
+
+  // Fallback: force visibility after delay if animation doesn't trigger (mobile safety)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setForceVisible(true)
+    }, FALLBACK_DELAY)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <motion.div
       custom={index}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1, margin: "-100px" }}
       variants={cardVariants}
+      animate={forceVisible ? "visible" : undefined}
       className="group relative h-full z-20"
       style={{ perspective: '1600px' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className={`relative h-full w-full transition-transform duration-[900ms] [transform-style:preserve-3d] ${flipped ? '[transform:rotateY(180deg)]' : ''} group-hover:[transform:rotateY(180deg)]`}
@@ -57,14 +73,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             Details
             <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
           </button>
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <EtherealShadow
-              color="rgba(34, 211, 238, 0.04)"
-              animation={{ scale: 15, speed: 60 }}
-              noise={{ opacity: 0.02, scale: 0.5 }}
-              className="w-full h-full"
-            />
-          </div>
+          {/* Lazy load EtherealShadow only when hovered to improve initial load performance */}
+          {isHovered && (
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+              <EtherealShadow
+                color="rgba(34, 211, 238, 0.04)"
+                animation={{ scale: 15, speed: 60 }}
+                noise={{ opacity: 0.02, scale: 0.5 }}
+                className="w-full h-full"
+              />
+            </div>
+          )}
           <div className="relative mb-6 aspect-video overflow-hidden bg-surface/40">
             <Image
               src={project.imageSrc}
@@ -72,6 +91,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading={index < 3 ? "eager" : "lazy"}
+              priority={index < 3}
+              quality={85}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary-bg/30 to-transparent" />
           </div>
