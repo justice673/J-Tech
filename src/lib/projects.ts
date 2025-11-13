@@ -10,6 +10,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "homedeco",
+    title: "HomeDeco Interior Design",
+    description: "Modern interior design platform showcasing residential and commercial space designs. Features service offerings, completed project galleries, client testimonials, and newsletter subscription for personalized design consultations.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    imageSrc: "/projects/home-deco.png",
+    hrefLive: "https://home-deco-sigma.vercel.app/",
+    hrefRepo: ""
+  },
+  {
     id: "parlaviva",
     title: "ParlaViva Translation Platform",
     description: "AI-powered multilingual platform for real-time text, document, speech, and website translation with team collaboration and secure workflows.",
