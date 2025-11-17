@@ -40,6 +40,7 @@ export default function About() {
           ]}
           gradient={true}
           blur={true}
+          hideImage={true}
         />
       </div>
     </motion.div>

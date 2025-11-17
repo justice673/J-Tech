@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-import ParticlesBackground from "@/components/ParticlesBackground";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+// Particles.js background - commented out for now
+// To re-enable: uncomment the import below and uncomment <ParticlesBackground /> in the body
+// import ParticlesBackground from "@/components/ParticlesBackground";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -49,8 +52,12 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/j-tech-logo.png" />
       </head>
       <body className={`${inter.variable} ${outfit.variable} antialiased`} style={{fontFamily: 'var(--font-outfit)'}}> 
-        <ParticlesBackground />
-        <main style={{ position: "relative", zIndex: 10 }}>{children}</main>
+        <ThemeProvider>
+          {/* Particles.js background - commented out for now */}
+          {/* To re-enable: uncomment the line below and uncomment the import at the top */}
+          {/* <ParticlesBackground /> */}
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

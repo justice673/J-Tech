@@ -26,6 +26,7 @@ interface HeroProps extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   imageSrc?: string
   imageAlt?: string
   imageClassName?: string
+  hideImage?: boolean
 }
 
 const Hero = React.forwardRef<HTMLElement, HeroProps>(
@@ -43,6 +44,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
       imageSrc,
       imageAlt = "Profile image",
       imageClassName,
+      hideImage = false,
       ...props
     },
     ref,
@@ -128,7 +130,7 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
           whileInView={{ y: 0, opacity: 1 }}
           className="relative z-30 container px-5 md:px-10 -translate-y-20 mt-16 sm:mt-20 md:mt-24"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+          <div className={cn("grid items-center gap-10", hideImage ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2")}>
             {/* Left: text */}
             <div className="flex flex-col items-start text-left space-y-4">
               <h1
@@ -165,40 +167,42 @@ const Hero = React.forwardRef<HTMLElement, HeroProps>(
             </div>
 
             {/* Right: circular image placeholder */}
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ amount: 0.3 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              className="relative mx-auto md:mx-0 w-48 h-48 md:w-72 md:h-72"
-            >
-              {/* Glow behind */}
-              <div className="absolute inset-0 blur-3xl opacity-40"
-                   style={{
-                     background: "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.35), transparent 60%)",
-                   }}
-              />
-              {/* Image or placeholder, clipped to circle (no border radius) */}
-              {imageSrc ? (
-                <Image
-                  src={imageSrc}
-                  alt={imageAlt}
-                  fill
-                  className={cn("object-cover", imageClassName)}
-                  style={{ clipPath: "circle(50% at 50% 50%)" }}
-                  sizes="(max-width: 768px) 192px, 288px"
+            {!hideImage && (
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ amount: 0.3 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                className="relative mx-auto md:mx-0 w-48 h-48 md:w-72 md:h-72"
+              >
+                {/* Glow behind */}
+                <div className="absolute inset-0 blur-3xl opacity-40"
+                     style={{
+                       background: "radial-gradient(circle at 50% 50%, rgba(34,211,238,0.35), transparent 60%)",
+                     }}
                 />
-              ) : (
-                <div
-                  className="w-full h-full bg-surface"
-                  style={{
-                    clipPath: "circle(50% at 50% 50%)",
-                    backgroundImage:
-                      "radial-gradient(circle at 50% 45%, rgba(34,211,238,0.25), transparent 60%), linear-gradient(135deg, rgba(34,211,238,0.15), rgba(167,139,250,0.1))",
-                  }}
-                />
-              )}
-            </motion.div>
+                {/* Image or placeholder, clipped to circle (no border radius) */}
+                {imageSrc ? (
+                  <Image
+                    src={imageSrc}
+                    alt={imageAlt}
+                    fill
+                    className={cn("object-cover", imageClassName)}
+                    style={{ clipPath: "circle(50% at 50% 50%)" }}
+                    sizes="(max-width: 768px) 192px, 288px"
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full bg-surface"
+                    style={{
+                      clipPath: "circle(50% at 50% 50%)",
+                      backgroundImage:
+                        "radial-gradient(circle at 50% 45%, rgba(34,211,238,0.25), transparent 60%), linear-gradient(135deg, rgba(34,211,238,0.15), rgba(167,139,250,0.1))",
+                    }}
+                  />
+                )}
+              </motion.div>
+            )}
           </div>
         </motion.div>
       </section>

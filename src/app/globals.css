@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Dark theme (default) */
   --color-primary-bg: #000000;
   --color-surface: #000000;
   --color-text: #E5E7EB;
@@ -16,16 +17,39 @@
   html {
     color-scheme: dark;
   }
+  
+  /* Light theme overrides */
+  html[data-theme="light"] {
+    color-scheme: light;
+    --color-primary-bg: #FFFFFF;
+    --color-surface: #F8FAFC;
+    /* Better text colors for light mode - dark rich text, keep muted gray visible */
+    --color-text: #0F172A;
+    --color-muted: #64748B;
+    --color-accent: #22D3EE;
+    --color-accentAlt: #A78BFA;
+    --color-border: #E2E8F0;
+  }
+  
   body {
     @apply bg-primary-bg text-text antialiased font-[var(--font-body)];
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+  
   h1,h2,h3,h4,h5,h6 {
     font-family: var(--font-heading);
   }
+  
   ::selection {
     background: #000000;
     color: #E5E7EB;
   }
+  
+  html[data-theme="light"] ::selection {
+    background: #22D3EE;
+    color: #0F172A;
+  }
+  
   :focus-visible {
     outline: 2px solid #22D3EE;
     outline-offset: 2px;
@@ -102,5 +126,12 @@
     animation-timing-function: cubic-bezier(0.22,1,0.36,1);
     animation-iteration-count: infinite; /* overridden inline */
     animation-fill-mode: both;
+  }
+  
+  /* Smooth transitions for theme switching */
+  * {
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
   }
 }
