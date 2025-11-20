@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Badge from '@/components/Badge'
 import { EtherealShadow } from './EtherealShadow'
 import type { Project } from '@/lib/projects'
+import { cn } from '@/lib/utils'
 import { useState, useCallback, useEffect } from 'react'
 
 interface ProjectCardProps {
@@ -26,6 +27,20 @@ const cardVariants = {
       ease: EASE
     }
   })
+}
+
+const statusBadgeStyles: Record<string, string> = {
+  "in-progress": "bg-red-500/15 text-red-300 border border-red-500/40",
+  live: "bg-emerald-500/15 text-emerald-200 border border-emerald-500/40",
+  completed: "bg-slate-500/15 text-slate-200 border border-slate-500/40",
+  preview: "bg-indigo-500/15 text-indigo-200 border border-indigo-500/40"
+}
+
+const statusBadgeLabels: Record<string, string> = {
+  "in-progress": "In progress",
+  live: "Live",
+  completed: "Completed",
+  preview: "Preview"
 }
 
 // Fallback: ensure cards are visible after a delay (mobile safety net)
@@ -110,6 +125,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-primary-bg/30 to-transparent" />
           </div>
           <div className="space-y-4">
+            {project.status && (
+              <Badge
+                variant="default"
+                className={cn(
+                  "text-[10px] uppercase tracking-wider",
+                  statusBadgeStyles[project.status] ?? "bg-surface text-text border border-border"
+                )}
+              >
+                {statusBadgeLabels[project.status] ?? project.status}
+              </Badge>
+            )}
             <h3 className="text-xl font-semibold text-text group-hover:text-accent transition-colors">
               {project.title}
             </h3>

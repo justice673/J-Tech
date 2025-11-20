@@ -6,6 +6,7 @@ export interface Project {
   imageSrc: string
   hrefLive?: string
   hrefRepo?: string
+  status?: 'in-progress' | 'completed' | 'live' | 'preview'
 }
 
 export const projects: Project[] = [
@@ -80,5 +81,14 @@ export const projects: Project[] = [
     imageSrc: "/projects/j's-recipe.png",
     hrefLive: "https://j-s-recipe-box.vercel.app/",
     hrefRepo: ""
+  },
+  {
+    id: "codingjojo",
+    title: "Coding Jojo",
+    description: "Elearning platform for developers with guided courses, structured milestones, and progress tracking tools tailored to modern workflows.",
+    tech: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
+    imageSrc: "/projects/codingjojo.png",
+    hrefLive: "https://codingjojo.vercel.app/",
+    status: "in-progress"
   }
 ]
