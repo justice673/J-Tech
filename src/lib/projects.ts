@@ -90,5 +90,14 @@ export const projects: Project[] = [
     imageSrc: "/projects/codingjojo.png",
     hrefLive: "https://codingjojo.vercel.app/",
     status: "in-progress"
+  },
+  {
+    id: "elitehome",
+    title: "EliteHome Real Estate Platform",
+    description: "Modern real estate platform connecting buyers with verified properties. Features extensive property listings, search functionality, mortgage calculator, market insights, neighborhood analytics, favorites system, and expert agent support.",
+    tech: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
+    imageSrc: "/projects/elitehome.png",
+    hrefLive: "https://elitehome.vercel.app/",
+    hrefRepo: ""
   }
 ]
