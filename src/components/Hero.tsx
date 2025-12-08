@@ -1,11 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShinyText } from '@/components/ui/text-effect'
 import { EtherealShadow } from './EtherealShadow'
 import { CycleText } from '@/components/ui/cycle-text'
+import { useEffect, useState } from 'react'
 
 const socialLinks = [
 	{
@@ -33,17 +34,34 @@ const socialLinks = [
 ]
 
 export default function Hero() {
+	const prefersReducedMotion = useReducedMotion()
+	const [isSmallScreen, setIsSmallScreen] = useState(false)
+
+	useEffect(() => {
+		const media = window.matchMedia('(max-width: 768px)')
+		const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+			setIsSmallScreen(event.matches)
+		}
+		handleChange(media)
+		media.addEventListener('change', handleChange)
+		return () => media.removeEventListener('change', handleChange)
+	}, [])
+
+	const showShadow = !(prefersReducedMotion || isSmallScreen)
+
 	return (
 		<section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 			{/* Ethereal Shadow Background */}
-			<div className="absolute inset-0">
-				<EtherealShadow
-					color="rgba(34, 211, 238, 0.15)"
-					animation={{ scale: 40, speed: 30 }}
-					noise={{ opacity: 0.05, scale: 1.2 }}
-					className="w-full h-full"
-				/>
-			</div>
+			{showShadow && (
+				<div className="absolute inset-0">
+					<EtherealShadow
+						color="rgba(34, 211, 238, 0.15)"
+						animation={{ scale: 40, speed: 30 }}
+						noise={{ opacity: 0.05, scale: 1.2 }}
+						className="w-full h-full"
+					/>
+				</div>
+			)}
 
 			{/* Background gradient overlay */}
 			<div className="absolute inset-0 bg-gradient-to-br from-primary-bg/90 via-primary-bg/80 to-primary-bg/90" />

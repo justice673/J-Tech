@@ -1,7 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ReactNode, useEffect, useState } from 'react'
 
 interface SectionProps {
   id?: string
@@ -30,12 +30,28 @@ export default function Section({
   children, 
   className = '' 
 }: SectionProps) {
+  const prefersReducedMotion = useReducedMotion()
+  const [forceVisible, setForceVisible] = useState(false)
+
+  // Safety net: ensure the section becomes visible even if IntersectionObserver is slow
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setForceVisible(true)
+      return
+    }
+    const timer = setTimeout(() => setForceVisible(true), 1200)
+    return () => clearTimeout(timer)
+  }, [prefersReducedMotion])
+
   return (
     <motion.section
       id={id}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1, margin: "-50px" }}
+      // Lower threshold and remove negative margin so mobile viewports trigger earlier
+      viewport={{ once: true, amount: 0.01 }}
+      // Force-show if the observer never fires or user prefers reduced motion
+      animate={forceVisible ? "visible" : undefined}
       variants={sectionVariants}
       className={`py-16 md:py-24 ${className}`}
     >
