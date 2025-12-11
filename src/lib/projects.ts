@@ -17,7 +17,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     imageSrc: "/projects/home-deco.png",
     hrefLive: "https://home-deco-sigma.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "live"
   },
   {
     id: "parlaviva",
@@ -26,7 +27,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "AI", "MongoDB" , "Express.js(Node.js)"],
     imageSrc: "/projects/parlaviva.png",
     hrefLive: "https://parlaviva.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "live"
   },
   {
     id: "tjhope",
@@ -35,7 +37,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "SCSS", "Accessibility", "SEO"],
     imageSrc: "/projects/tjhope.png",
     hrefLive: "https://www.tjhopefoundation.org/",
-    hrefRepo: "" // add if public
+    hrefRepo: "", // add if public
+    status: "in-progress"
   },
   {
     id: "xperience",
@@ -44,7 +47,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Job API"],
     imageSrc: "/projects/x-perience.png",
     hrefLive: "https://x-perience-frontend.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "in-progress"
   },
   {
     id: "educameroon",
@@ -53,7 +57,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
     imageSrc: "/projects/educameroon.png",
     hrefLive: "https://educameroon.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "in-progress"
   },
   {
     id: "jabaspace",
@@ -62,7 +67,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     imageSrc: "/projects/jabaspace.png",
     hrefLive: "https://jaba-space.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "live"
   },
   {
     id: "novacart",
@@ -71,7 +77,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "Authentication"],
     imageSrc: "/projects/novacart.png",
     hrefLive: "https://nova-cart-delta.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "live"
   },
   {
     id: "jsrecipebox",
@@ -80,7 +87,8 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "Express.js", "Authentication"],
     imageSrc: "/projects/j's-recipe.png",
     hrefLive: "https://j-s-recipe-box.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "live"
   },
   {
     id: "codingjojo",
@@ -98,6 +106,16 @@ export const projects: Project[] = [
     tech: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
     imageSrc: "/projects/elitehome.png",
     hrefLive: "https://elitehome.vercel.app/",
-    hrefRepo: ""
+    hrefRepo: "",
+    status: "live"
+  },
+  {
+    id: "monster",
+    title: "Monster Energy Drink Redesign",
+    description: "A modern, animated redesign of the Monster Energy Drink website. Built to showcase advanced GSAP animation skills, Three.js 3D effects, and a sleek UI using Next.js, React, TypeScript, and Tailwind CSS.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Three.js", "GSAP"],
+    imageSrc: "/projects/monster.png",
+    hrefLive: "https://monster-enerydrink.vercel.app/",
+    status: "live"
   }
 ]
