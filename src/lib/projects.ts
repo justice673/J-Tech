@@ -11,6 +11,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "fripcash",
+    title: "FripCash",
+    description: "A second-hand marketplace platform inspired by Vinted and tailored for Cameroon. It enables users to buy and sell pre-owned products through a modern, responsive experience designed for trust, simplicity, and smooth product discovery.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB"],
+    imageSrc: "/projects/fripcash.png",
+    hrefLive: "https://fripcash.vercel.app/",
+    status: "live"
+  },
+  {
     id: "consentmd-onboarding",
     title: "ConsentMD Onboarding Platform",
     description: "A workforce and onboarding platform built for ConsentMD to help healthcare organizations across the United States recruit, onboard, and manage healthcare professionals in one centralized system. It enables healthcare personnel to discover job opportunities, complete onboarding steps, access training courses, and earn certifications through a dedicated dashboard.",
