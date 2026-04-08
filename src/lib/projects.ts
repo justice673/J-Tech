@@ -11,6 +11,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "consentmd-onboarding",
+    title: "ConsentMD Onboarding Platform",
+    description: "A workforce and onboarding platform built for ConsentMD to help healthcare organizations across the United States recruit, onboard, and manage healthcare professionals in one centralized system. It enables healthcare personnel to discover job opportunities, complete onboarding steps, access training courses, and earn certifications through a dedicated dashboard.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    imageSrc: "/projects/onboarding.png",
+    hrefLive: "https://onboarding.consentmd.ai/",
+    status: "live"
+  },
+  {
+    id: "gmbinvestments",
+    title: "GMB Investments",
+    description: "A professional corporate website for an investment firm based in Cape Town, designed to present services, investment focus, and vision with clarity and trust. The platform uses a modern interface, intuitive navigation, and strong visual hierarchy to communicate financial information effectively while maintaining a polished corporate presence.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
+    imageSrc: "/projects/gmbinvestment.png",
+    hrefLive: "https://gmbinvestments.co.za/",
+    status: "live"
+  },
+  {
     id: "homedeco",
     title: "HomeDeco Interior Design",
     description: "Modern interior design platform showcasing residential and commercial space designs. Features service offerings, completed project galleries, client testimonials, and newsletter subscription for personalized design consultations.",
