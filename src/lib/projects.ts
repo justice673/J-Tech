@@ -29,12 +29,12 @@ export const projects: Project[] = [
     status: "live"
   },
   {
-    id: "gmbinvestments",
-    title: "GMB Investments",
+    id: "gmblegacies",
+    title: "GMB Legacies",
     description: "A professional corporate website for an investment firm based in Cape Town, designed to present services, investment focus, and vision with clarity and trust. The platform uses a modern interface, intuitive navigation, and strong visual hierarchy to communicate financial information effectively while maintaining a polished corporate presence.",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
-    imageSrc: "/projects/gmbinvestment.png",
-    hrefLive: "https://gmbinvestments.co.za/",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP" ],
+    imageSrc: "/projects/gmblegacies.png",
+    hrefLive: "https://gmblegacaies.com/",
     status: "live"
   },
   {
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     status: "live"
   },
   {
-    id: "novacart",
+    id: "novacart", 
     title: "NovaCart E-commerce Platform",
     description: "Modern fashion e-commerce platform featuring trending products, category browsing, seasonal collections, wishlist functionality, cart management, user authentication, and newsletter subscription system.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "Authentication"],
@@ -145,4 +145,5 @@ export const projects: Project[] = [
     hrefLive: "https://monster-enerydrink.vercel.app/",
     status: "live"
   }
-]
+] 
+          
