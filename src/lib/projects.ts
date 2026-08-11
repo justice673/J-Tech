@@ -11,6 +11,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "skilldera",
+    title: "Skilldera",
+    description: "Digital marketplace for African creators to sell courses, ebooks, and downloads with native XAF pricing and next-day MTN & Orange MoMo payouts — no dollar account, no FX loss. Built the frontend: marketing site, marketplace UX, bilingual EN/FR experience, creator storefronts, and high-conversion landing flows.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "next-intl"],
+    imageSrc: "/projects/skilldera.png",
+    hrefLive: "https://www.skilldera.co/",
+    status: "live"
+  },
+  {
     id: "fripcash",
     title: "FripCash",
     description: "A second-hand marketplace platform inspired by Vinted and tailored for Cameroon. It enables users to buy and sell pre-owned products through a modern, responsive experience designed for trust, simplicity, and smooth product discovery.",
